@@ -77,16 +77,3 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-function togglePassword(inputId, event) {
-    const input = document.getElementById(inputId);
-    const button = input.nextElementSibling;
-
-    if (input.type === "password") {
-        input.type = "text";
-        button.textContent = "🔒";
-    } else {
-        input.type = "password";
-        button.textContent = "👁️";
-    }
-}
-
