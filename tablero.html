@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RETO 3</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        .task {
+            border-left: 5px solid transparent;
+            padding: 10px;
+            margin: 5px 0;
+            background-color: #b7b5b5;
+            border-radius: 5px;
+        }
+        .task-title {
+            font-weight: bold;
+            margin: 0;
+        }
+        .task-details {
+            font-size: 0.9em;
+            color: #555;
+        }
+        .priority-high {
+            border-left-color: red;
+        }
+        .priority-medium {
+            border-left-color: orange;
+        }
+        .priority-low {
+            border-left-color: green;
+        }
+    </style>
+</head>
+<body>
+
+
+
+<header class="app-header">
+    <div class="logo-container">
+        <img src="2024-12-14_17-46-removebg-preview.png" alt="App Logo" class="logo">
+        <span class="app-name">WombatFlow</span>
+    </div>
+    <div class="header-buttons">
+        <button id="theme-toggle" class="theme-button">🌙</button>
+        <div class="language-menu">
+            <button id="language-toggle" class="language-button">
+                <img src="https://flagcdn.com/w40/us.png" alt="English" class="flag-icon"> EN
+            </button>
+            <ul id="language-dropdown" class="dropdown hidden">
+                <li data-lang="en">
+                    <img src="https://flagcdn.com/w40/us.png" alt="English" class="flag-icon"> English
+                </li>
+                <li data-lang="es">
+                    <img src="https://flagcdn.com/w40/es.png" alt="Español" class="flag-icon"> Español
+                </li>
+                <li data-lang="ca">
+                    <img src="https://img.icons8.com/?size=100&id=qRmogYwpS4Lb&format=png&color=000000" alt="Català" class="flag-icon"> Català
+                </li>
+            </ul>
+        </div>
+        <div class="user-menu">
+            <div id="user-button" class="user-info">
+                <img src="descarga.jfif" alt="User Avatar" class="user-avatar">
+                <span id="user-name">Faresro</span>
+            </div>
+            <ul id="user-dropdown" class="dropdown hidden">
+                <li><i class="fas fa-user"></i> Perfil</li>
+    <li><i class="fas fa-cog"></i> Ajustes</li>
+    <li id="logout-button"><i class="fas fa-sign-out-alt"></i> Logout</li>
+
+            </ul>
+        </div>
+    </div>
+</header>
+
+
+
+<button id="help-button" class="help-button">❓ Ayuda</button>
+
+
+<div id="help-chat" class="help-chat hidden">
+    <div class="chat-header">
+        <span>Chat de Ayuda</span>
+        <button id="close-chat" class="close-chat">✖</button>
+    </div>
+    <div class="chat-content">
+        <p>¡Hola! ¿En qué puedo ayudarte?</p>
+    </div>
+    <div class="chat-footer">
+        <input type="text" id="chat-input" placeholder="Escribe tu mensaje aquí...">
+        <button id="send-message">Enviar</button>
+    </div>
+</div>
+
+    <main class="container">
+        <section class="title">
+            <h1>Tablero de tareas</h1>
+			<button id="add-task" onclick="addTask()">Añadir tarea</button>
+        </section>
+        <section class="header">
+            <h4 id="backlog-header"></h4>
+            <h4 id="ready-header"></h4>
+            <h4 id="review-header"></h4>
+        </section>
+        <section class="drag-drop-container">
+            <section class="col3" id="backlog" ondrop="drop(event)" ondragover="allowdrop(event)">
+                <div class="task priority-medium" id="task1" draggable="true" onclick="openTaskDetails(event)" ondragstart="drag(event)">
+                    <p class="task-title">Tarea 1</p>
+                    <p class="task-details">Deadline: 2024-11-18 | Asignada a: Carlos</p>
+                </div>
+                <div class="task priority-high" id="task2" draggable="true" onclick="openTaskDetails(event)" ondragstart="drag(event)">
+                    <p class="task-title">Tarea 2 </p>
+                    <p class="task-details">Deadline: 2024-11-20 | Asignada a: Jaime</p>
+                </div>
+            </section>
+            <section class="col3" id="ready" ondrop="drop(event)" ondragover="allowdrop(event)"></section>
+            <section class="col3" id="in-review" ondrop="drop(event)" ondragover="allowdrop(event)"></section>
+        </section>
+		<div id="customModal" class="modal-overlay">
+			<div class="modal-content">
+				<p>¿Estás seguro de que deseas eliminar esta tarea?</p>
+				<div class="modal-buttons">
+					<button id="confirmDelete" class="modal-button confirm"><i class="fas fa-trash"></i> Eliminar</button>
+					<button id="cancelDelete" class="modal-button cancel"><i class="fas fa-times"></i> Cancelar</button>
+				</div>
+			</div>
+		</div>
+
+		<div id="logoutModal" class="modal-overlay">
+			<div class="modal-content">
+				<p>¿Estás seguro de que quieres cerrar sesión?</p>
+				<div class="modal-buttons">
+					<button id="confirmLogout" class="modal-button confirm"><i class="fas fa-sign-out-alt"></i>   Cerrar sesión</button>
+					<button id="cancelLogout" class="modal-button cancel"><i class="fas fa-times"></i> Cancelar</button>
+				</div>
+			</div>
+		</div>
+
+        <div id="task-modal" class="modal" style="display:none;">
+            <div class="modal-content">
+                <span class="close" onclick="closeTaskDetails()">&times;</span>
+                <h2>Task Editor</h2>
+                <label for="task-title-input">Titulo:</label>
+                <input type="text" id="task-title-input"><br><br>
+                <label for="task-description-input">Descripcion:</label>
+                <textarea id="task-description-input"></textarea><br><br>
+                <label for="task-priority">Prioridad:</label>
+                <select id="task-priority">
+                    <option value="priority-high">Alta</option>
+                    <option value="priority-medium">Media</option>
+                    <option value="priority-low">Baja</option>
+                </select><br><br>
+                <label for="task-assignee">Asignar responsable:</label>
+                <input type="text" id="task-assignee" placeholder="Persona responsable de la tarea"><br><br>
+                <label>Subtareas:</label>
+                <ul id="subtasks-list"></ul>
+                <input type="text" id="new-subtask-input" placeholder="Añade una subtarea">
+                <button onclick="addSubtask()"> <i class="fas fa-tasks"></i>
+                     Añadir Subtarea</button><br><br>
+                <label for="task-deadline">Deadline:</label>
+                <input type="date" id="task-deadline"><br><br>
+                <button onclick="saveTaskDetails()">
+					<i class="fas fa-save"></i> Guardar
+				</button>
+                <button class="delete-task" onclick="deleteTask()">
+					<i class="fas fa-trash"></i> Eliminar Tarea
+				</button>
+            </div>
+        </div>
+    </main>
+
+        <footer>
+            <div class="footer-container">
+                <p>&copy; 2024 WombatFlow. Todos los derechos reservados. </p>
+                <p>Fernando Ares Robledo. Reto 3.</p>
+                <nav>
+                    <ul>
+                        <li><a href="#">Política de Privacidad</a></li>
+                        <li><a href="#">Términos y Condiciones</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </footer>
+    <script src="script.js" defer></script>
+</body>
+</html>

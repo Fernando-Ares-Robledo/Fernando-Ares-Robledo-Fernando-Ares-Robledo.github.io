@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WombatFlow - Bienvenido</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header class="app-header">
+        <div class="logo-container">
+            <img src="2024-12-14_17-46-removebg-preview.png" alt="App Logo" class="logo">
+            <span class="app-name">WombatFlow</span>
+        </div>
+        <div class="header-buttons">
+            <button id="theme-toggle" class="theme-button">🌙</button>
+            <div class="language-menu">
+                <button id="language-toggle" class="language-button">
+                    <img src="https://flagcdn.com/w40/us.png" alt="English" class="flag-icon"> EN
+                </button>
+                <ul id="language-dropdown" class="dropdown hidden">
+                    <li data-lang="en">
+                        <img src="https://flagcdn.com/w40/us.png" alt="English" class="flag-icon"> English
+                    </li>
+                    <li data-lang="es">
+                        <img src="https://flagcdn.com/w40/es.png" alt="Español" class="flag-icon"> Español
+                    </li>
+                    <li data-lang="ca">
+                        <img src="https://img.icons8.com/?size=100&id=qRmogYwpS4Lb&format=png&color=000000" alt="Català" class="flag-icon"> Català
+                    </li>
+                </ul>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#">Inicio</a></li>
+                    <li><a href="#">Acerca de</a></li>
+                    <li><a href="#">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    
+    <main>
+        <div class="container">
+           
+            <form id="loginForm">
+                <h2>Iniciar Sesión</h2>
+                <label for="username">Usuario</label>
+                <input type="text" id="username" placeholder="Nombre de usuario" required>
+
+                <label for="password">Contraseña</label>
+			<div class="password-container">
+				<input type="password" id="password" placeholder="Contraseña" required>
+				<button type="button" class="toggle-password" onclick="togglePassword('password')">
+					👁️
+				</button>
+			</div>
+
+
+                <button type="submit" style="background-color: #4fc3f7;">Acceder</button> 
+                <p>¿No tienes cuenta? <a href="#" id="registerLink">Regístrate</a></p>
+            </form>
+
+            
+            <form id="registerForm" style="display: none;">
+                <h2>Registrarse</h2>
+                <label for="fullName">Nombre Completo</label>
+                <input type="text" id="fullName" placeholder="Tu nombre completo" required>
+
+                <label for="email">Correo Electrónico</label>
+                <input type="email" id="email" placeholder="Tu correo electrónico" required>
+
+                <label for="newUsername">Usuario</label>
+                <input type="text" id="newUsername" placeholder="Crea un usuario" required>
+
+               
+			<label for="newPassword">Contraseña</label>
+			<div class="password-container">
+				<input type="password" id="newPassword" placeholder="Crea una contraseña" required>
+				<button type="button" class="toggle-password" onclick="togglePassword('newPassword')">
+					👁️
+				</button>
+			</div>
+
+			<label for="confirmPassword">Confirma Contraseña</label>
+			<div class="password-container">
+				<input type="password" id="confirmPassword" placeholder="Repite la contraseña" required>
+				<button type="button" class="toggle-password" onclick="togglePassword('confirmPassword')">
+					👁️
+				</button>
+			</div>
+			<p id="error-message" class="error-message"></p> 
+
+                <div class="terms">
+                    <input type="checkbox" id="terms" required>
+                    <label for="terms">Acepto los <a href="#">Términos y Condiciones</a></label>
+                </div>
+
+                <button type="submit">Registrarse</button>
+                <p>¿Ya tienes cuenta? <a href="#" id="loginLink">Inicia Sesión</a></p>
+            </form>
+        </div>
+    </main>
+
+
+    <footer>
+        <div class="footer-container">
+            <p>&copy; 2024 WombatFlow. Todos los derechos reservados.</p>
+            <p>Fernando Ares Robledo. Reto 3.</p>
+            <nav>
+                <ul>
+                    <li><a href="#">Política de Privacidad</a></li>
+                    <li><a href="#">Términos y Condiciones</a></li>
+                </ul>
+            </nav>
+        </div>
+    </footer>
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const loginForm = document.getElementById("loginForm");
+            const registerForm = document.getElementById("registerForm");
+
+        
+            document.getElementById("registerLink").addEventListener("click", (e) => {
+                e.preventDefault();
+                loginForm.style.display = "none";
+                registerForm.style.display = "block";
+            });
+
+            
+            document.getElementById("loginLink").addEventListener("click", (e) => {
+                e.preventDefault();
+                registerForm.style.display = "none";
+                loginForm.style.display = "block";
+            });
+
+            
+        });
+    </script>
+     <script src="scripts.js" defer></script>
+</body>
+</html>
