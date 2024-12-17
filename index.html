@@ -122,6 +122,19 @@
 
 
     <script>
+	    function togglePassword(inputId) {
+    const input = document.getElementById(inputId);
+    const button = event.currentTarget;
+
+    if (input.type === "password") {
+        input.type = "text";
+        button.textContent = "🔒";
+    } else {
+        input.type = "password";
+        button.textContent = "👁️";
+    }
+}
+
         document.addEventListener("DOMContentLoaded", () => {
             const loginForm = document.getElementById("loginForm");
             const registerForm = document.getElementById("registerForm");
