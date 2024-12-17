@@ -77,7 +77,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-function togglePassword(inputId) {
+function togglePassword(inputId, event) {
     const input = document.getElementById(inputId);
     const button = event.currentTarget;
 
@@ -89,3 +89,4 @@ function togglePassword(inputId) {
         button.textContent = "👁️";
     }
 }
+
