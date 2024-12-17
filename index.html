@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WombatFlow - Bienvenido</title>
     <link rel="stylesheet" href="styles.css">
+     <script src="scripts.js"></script>
 </head>
 <body>
-    <!-- Cabecera -->
 
     <header class="app-header">
         <div class="logo-container">
@@ -36,35 +36,36 @@
                 <ul>
                     <li><a href="#">Inicio</a></li>
                     <li><a href="#">Acerca de</a></li>
-                    <li><a href="#">Contacto</a></li>
+                    <li><a href="tablero.html">Contacto</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <!-- Contenido Principal -->
+    
     <main>
         <div class="container">
-            <!-- Formulario de inicio de sesión -->
+           
             <form id="loginForm">
                 <h2>Iniciar Sesión</h2>
                 <label for="username">Usuario</label>
                 <input type="text" id="username" placeholder="Nombre de usuario" required>
 
                 <label for="password">Contraseña</label>
-<div class="password-container">
-    <input type="password" id="password" placeholder="Contraseña" required>
-    <button type="button" class="toggle-password" onclick="togglePassword('password')">
-        👁️
-    </button>
-</div>
+			<div class="password-container">
+				<input type="password" id="password" placeholder="Contraseña" required>
+				<button type="button" class="toggle-password" onclick="togglePassword('password')">
+					👁️
+				</button>
+			</div>
 
-
-                <button type="submit" style="background-color: #4fc3f7;">Acceder</button> 
+		<a href="tablero.html" style="text-decoration: none;">
+	
+                <button  type="button" style="background-color: #4fc3f7;">Acceder</button> </a>
                 <p>¿No tienes cuenta? <a href="#" id="registerLink">Regístrate</a></p>
             </form>
 
-            <!-- Formulario de registro -->
+            
             <form id="registerForm" style="display: none;">
                 <h2>Registrarse</h2>
                 <label for="fullName">Nombre Completo</label>
@@ -76,36 +77,36 @@
                 <label for="newUsername">Usuario</label>
                 <input type="text" id="newUsername" placeholder="Crea un usuario" required>
 
-               <!-- Campo de contraseña en Registro -->
-<label for="newPassword">Contraseña</label>
-<div class="password-container">
-    <input type="password" id="newPassword" placeholder="Crea una contraseña" required>
-    <button type="button" class="toggle-password" onclick="togglePassword('newPassword')">
-        👁️
-    </button>
-</div>
+               
+			<label for="newPassword">Contraseña</label>
+			<div class="password-container">
+				<input type="password" id="newPassword" placeholder="Crea una contraseña" required>
+				<button type="button" class="toggle-password" onclick="togglePassword('newPassword')">
+					👁️
+				</button>
+			</div>
 
-<label for="confirmPassword">Confirma Contraseña</label>
-<div class="password-container">
-    <input type="password" id="confirmPassword" placeholder="Repite la contraseña" required>
-    <button type="button" class="toggle-password" onclick="togglePassword('confirmPassword')">
-        👁️
-    </button>
-</div>
-<p id="error-message" class="error-message"></p> 
+			<label for="confirmPassword">Confirma Contraseña</label>
+			<div class="password-container">
+				<input type="password" id="confirmPassword" placeholder="Repite la contraseña" required>
+				<button type="button" class="toggle-password" onclick="togglePassword('confirmPassword')">
+					👁️
+				</button>
+			</div>
+			<p id="error-message" class="error-message"></p> 
 
                 <div class="terms">
                     <input type="checkbox" id="terms" required>
                     <label for="terms">Acepto los <a href="#">Términos y Condiciones</a></label>
                 </div>
 
-                <button type="submit">Registrarse</button>
+                <button type="submit" style="background-color: #4fc3f7;">Registrarse</button>
                 <p>¿Ya tienes cuenta? <a href="#" id="loginLink">Inicia Sesión</a></p>
             </form>
         </div>
     </main>
 
-    <!-- Footer -->
+
     <footer>
         <div class="footer-container">
             <p>&copy; 2024 WombatFlow. Todos los derechos reservados.</p>
@@ -119,20 +120,20 @@
         </div>
     </footer>
 
-    <!-- Script Inline -->
+
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             const loginForm = document.getElementById("loginForm");
             const registerForm = document.getElementById("registerForm");
 
-            // Mostrar formulario de registro
+        
             document.getElementById("registerLink").addEventListener("click", (e) => {
                 e.preventDefault();
                 loginForm.style.display = "none";
                 registerForm.style.display = "block";
             });
 
-            // Volver al formulario de login
+            
             document.getElementById("loginLink").addEventListener("click", (e) => {
                 e.preventDefault();
                 registerForm.style.display = "none";
