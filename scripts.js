@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
     registerForm.appendChild(successMessage);
     loginForm.addEventListener("submit", (e) => {
         e.preventDefault();
-        window.location.href = "https://fernando-ares-robledo.github.io/tablero.html"; 
+        window.location.href = "/tablero.html"; 
     });
 
     
