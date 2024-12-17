@@ -79,7 +79,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function togglePassword(inputId, event) {
     const input = document.getElementById(inputId);
-    const button = event.currentTarget;
+    const button = input.nextElementSibling;
 
     if (input.type === "password") {
         input.type = "text";
